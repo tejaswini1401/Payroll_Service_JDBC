@@ -14,19 +14,15 @@ class PayrollServiceTest {
     @Test
     public void givenEmployeePayrollInDB_WhenRetrieve_ShouldMatchRetrieveCount() {
         EmployeePayrollDBService employeePayrollService = new EmployeePayrollDBService();
-        List<EmployeePayrollData> employeePayrollData = employeePayrollService.readData();
-        
+        List<EmployeePayrollData> employeePayrollData = employeePayrollService.readData();    
         assertEquals(3, employeePayrollData.size());  
     }
     
     @Test
     public void givenNewSalary_WhenUpdated_ShouldSyncWithDB() throws EmployeePayrollException {
         EmployeePayrollDBService payrollService = new EmployeePayrollDBService();
-
-        payrollService.updateEmployeeSalary("Teja", 3000000.00);
-
+        payrollService.updateEmployeeSalary("Sami", 2000000.00);
         double salaryInDB = payrollService.getEmployeeSalaryFromDB("Teja");
-
         assertEquals(3000000.00, salaryInDB);
     }
 }
