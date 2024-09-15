@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.jdbc.mysql.PayrollServiceJDBC.EmployeePayrollDBService;
 import com.jdbc.mysql.PayrollServiceJDBC.EmployeePayrollData;
+import com.jdbc.mysql.PayrollServiceJDBC.EmployeePayrollException;
 
 class PayrollServiceTest {
     
@@ -16,5 +17,16 @@ class PayrollServiceTest {
         List<EmployeePayrollData> employeePayrollData = employeePayrollService.readData();
         
         assertEquals(3, employeePayrollData.size());  
+    }
+    
+    @Test
+    public void givenNewSalary_WhenUpdated_ShouldSyncWithDB() throws EmployeePayrollException {
+        EmployeePayrollDBService payrollService = new EmployeePayrollDBService();
+
+        payrollService.updateEmployeeSalary("Teja", 3000000.00);
+
+        double salaryInDB = payrollService.getEmployeeSalaryFromDB("Teja");
+
+        assertEquals(3000000.00, salaryInDB);
     }
 }
