@@ -81,7 +81,7 @@ public class EmployeePayrollDBService {
 		List<EmployeePayrollData> data = obj.readData();
 		System.out.println("Before update: " + data + "\n");
 
-		int rowsAffected = obj.updateEmployeeSalary("Teja", 3000000.00);
+		int rowsAffected = obj.updateEmployeeSalary("Sami", 2000000.00);
 		System.out.println("Rows affected: " + rowsAffected);
 
 		List<EmployeePayrollData> updatedData = obj.readData();
